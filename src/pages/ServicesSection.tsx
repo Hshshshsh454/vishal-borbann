@@ -1,16 +1,39 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const ServicesSection: React.FC = () => {
+
+  const cardAnimation = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
     <>
       <section className="services">
 
-        <h1 className="title">Our Services</h1>
+        <motion.h1
+          className="title"
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Our Services
+        </motion.h1>
 
         <div className="service-grid">
 
           {/* Card 1 */}
-          <div className="service-card">
+          <motion.div
+            className="service-card"
+            variants={cardAnimation}
+            initial="hidden"
+            whileInView="visible"
+          >
             <div className="icon">♡</div>
 
             <h2>Wedding Photography</h2>
@@ -28,10 +51,16 @@ const ServicesSection: React.FC = () => {
             </ul>
 
             <button>Explore Package</button>
-          </div>
+          </motion.div>
 
           {/* Card 2 */}
-          <div className="service-card">
+          <motion.div
+            className="service-card"
+            variants={cardAnimation}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ delay: 0.2 }}
+          >
             <div className="icon">📷</div>
 
             <h2>Portrait & Lifestyle</h2>
@@ -49,10 +78,16 @@ const ServicesSection: React.FC = () => {
             </ul>
 
             <button>Explore Package</button>
-          </div>
+          </motion.div>
 
           {/* Card 3 */}
-          <div className="service-card">
+          <motion.div
+            className="service-card"
+            variants={cardAnimation}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ delay: 0.4 }}
+          >
             <div className="icon">📅</div>
 
             <h2>Event Photography</h2>
@@ -70,13 +105,13 @@ const ServicesSection: React.FC = () => {
             </ul>
 
             <button>Explore Package</button>
-          </div>
+          </motion.div>
 
         </div>
 
       </section>
 
-      {/* CSS BELOW */}
+      {/* CSS SAME AS YOUR ORIGINAL */}
 
       <style>{`
 

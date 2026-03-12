@@ -9,7 +9,7 @@ import PricingSection from "./pages/PricingSection";
 import GallerySection from "./pages/GallerySection";
 import FAQSection from "./pages/FAQSection";
 import WhyChooseMe from "./pages/WhyChooseMe";
-
+// import InstaScroll from "./pages/InstaScroll";
 import "./App.css";
 
 
@@ -21,7 +21,7 @@ function App() {
       <WeddingReels />
       <WhyChooseMe />
       <GallerySection />
-      
+      {/* <InstaScroll /> */}
       <PricingSection />
       <Services />
       

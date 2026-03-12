@@ -1,2 +1,9 @@
 @tailwind base;
 @tailwind utilities;
+
+body{
+  font-family: 'Playfair Display', serif;
+}
+html{
+scroll-behavior:smooth;
+}

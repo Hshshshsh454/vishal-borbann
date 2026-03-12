@@ -37,7 +37,7 @@ const FAQSection: React.FC = () => {
 
   return (
     <>
-      <section className="faq">
+      <section id="faq" className="faq">
 
         <h1 className="faq-title">Got Questions?</h1>
 

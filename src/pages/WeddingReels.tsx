@@ -4,7 +4,7 @@ import reels from "../Assets/reels-BMDvTJBR.mp4";
 const WeddingReels: React.FC = () => {
   return (
     <>
-      <section className="reels">
+      <section id="reels"className="reels">
 
         <div className="reels-header">
           <p className="tag">CINEMATIC FILMS</p>
@@ -18,22 +18,21 @@ const WeddingReels: React.FC = () => {
           </p>
         </div>
 
-        {/* Video Box */}
         <div className="video-box">
-
-          <video className="video" controls>
+          <video
+            className="video"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
             <source src={reels} type="video/mp4" />
           </video>
 
-          <p className="play-text">
-            Play Highlight Reel
-          </p>
-
+          <p className="play-text">Highlight Reel</p>
         </div>
 
       </section>
-
-      {/* CSS BELOW */}
 
       <style>{`
 
@@ -43,6 +42,11 @@ const WeddingReels: React.FC = () => {
         text-align:center;
         color:white;
         font-family:Georgia, serif;
+      }
+
+      .reels-header{
+        max-width:800px;
+        margin:auto;
       }
 
       .tag{
@@ -65,7 +69,7 @@ const WeddingReels: React.FC = () => {
       }
 
       .video-box{
-        max-width:800px;
+        max-width:900px;
         margin:auto;
         background:black;
         border-radius:20px;
@@ -74,8 +78,9 @@ const WeddingReels: React.FC = () => {
 
       .video{
         width:100%;
+        height:auto;
         max-height:500px;
-        object-fit:contain;
+        object-fit:cover;
         border-radius:15px;
       }
 
@@ -84,10 +89,59 @@ const WeddingReels: React.FC = () => {
         font-size:22px;
       }
 
+      /* Tablet */
+
+      @media (max-width: 992px){
+
+        .title{
+          font-size:42px;
+        }
+
+        .subtitle{
+          font-size:16px;
+        }
+
+        .video-box{
+          padding:15px;
+        }
+
+      }
+
+      /* Mobile */
+
+      @media (max-width: 600px){
+
+        .reels{
+          padding:60px 15px;
+        }
+
+        .title{
+          font-size:30px;
+        }
+
+        .subtitle{
+          font-size:15px;
+          margin-bottom:40px;
+        }
+
+        .video-box{
+          border-radius:12px;
+          padding:10px;
+        }
+
+        .video{
+          border-radius:10px;
+        }
+
+        .play-text{
+          font-size:16px;
+        }
+
+      }
+
       `}</style>
     </>
   );
 };
 
 export default WeddingReels;
-

@@ -3,7 +3,7 @@ import React from "react";
 const Services: React.FC = () => {
   return (
     <>
-      <section className="services-section">
+      <section id="services" className="services-section">
 
         <h1 className="title">Our Services</h1>
 

@@ -1,9 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ContactSection: React.FC = () => {
+
+  const [formData, setFormData] = useState({
+    names: "",
+    email: "",
+    date: "",
+    venue: "",
+    message: ""
+  });
+
+  const [sent, setSent] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+
+      const response = await fetch(
+        "http://localhost:5173/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        }
+      );
+
+      if (response.ok) {
+
+        setSent(true);
+
+        setFormData({
+          names: "",
+          email: "",
+          date: "",
+          venue: "",
+          message: ""
+        });
+
+        setTimeout(() => setSent(false), 4000);
+
+      }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      alert("Failed to send message");
+    }
+
+  };
+
   return (
     <>
-      <section className="contact">
+      <section id="contact" className="contact">
 
         <h1 className="title">Let's Tell Your Story</h1>
 
@@ -11,44 +68,81 @@ const ContactSection: React.FC = () => {
           Share your wedding vision and receive a personalized reply crafted just for you.
         </p>
 
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
 
           <div className="row">
+
             <div className="field">
               <label>YOUR NAMES</label>
-              <input type="text" placeholder="Type names here..." />
+              <input
+                type="text"
+                name="names"
+                value={formData.names}
+                onChange={handleChange}
+                placeholder="Type names here..."
+                required
+              />
             </div>
 
             <div className="field">
               <label>EMAIL</label>
-              <input type="email" placeholder="email@example.com" />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="email@example.com"
+                required
+              />
             </div>
+
           </div>
 
           <div className="row">
+
             <div className="field">
               <label>WEDDING DATE</label>
-              <input type="date" />
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="field">
               <label>VENUE / LOCATION</label>
-              <input type="text" placeholder="Where is the magic happening?" />
+              <input
+                type="text"
+                name="venue"
+                value={formData.venue}
+                onChange={handleChange}
+                placeholder="Where is the magic happening?"
+              />
             </div>
+
           </div>
 
           <div className="field full">
+
             <label>TELL ME YOUR VISION</label>
-            <textarea placeholder="Describe your dream wedding..."></textarea>
+
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Describe your dream wedding..."
+            />
+
           </div>
 
           <button className="submit">Send Message</button>
 
+          {sent && <p className="success">Message Sent Successfully!</p>}
+
         </form>
 
       </section>
-
-      {/* CSS BELOW */}
 
       <style>{`
 
@@ -128,6 +222,18 @@ const ContactSection: React.FC = () => {
 
       .submit:hover{
         background:#ff8f3a;
+      }
+
+      .success{
+        margin-top:20px;
+        color:#00ff9d;
+        font-weight:600;
+      }
+
+      @media(max-width:700px){
+        .row{
+          flex-direction:column;
+        }
       }
 
       `}</style>
